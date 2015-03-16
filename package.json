@@ -1,0 +1,25 @@
+{
+  "name": "faster",
+  "version": "1.0.0",
+  "description": "faster way to reload your web project on all connected devices",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ideaq/faster.git"
+  },
+  "keywords": [
+    "faster",
+    "reload",
+    "and",
+    "testing"
+  ],
+  "author": "@nelsonic <contact.nelsonic@gmail.com> (https://github.com/nelsonic)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ideaq/faster/issues"
+  },
+  "homepage": "https://github.com/ideaq/faster"
+}
