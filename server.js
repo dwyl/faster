@@ -1,28 +1,27 @@
-var WebSocketServer = require('ws').Server;
-var http = require('http');
+var app = require('http').createServer();
 var port = process.env.PORT || 5000;
-var server = http.createServer();
-server.listen(port);
+var io  = require('socket.io')(app);
 
-var wss = new WebSocketServer({
-  server: server
-})
-console.log("WS Server Created")
+app.listen(port);
 
-wss.on('connection', function(ws){
+io.on('connection', function(socket){
   console.log("websocket connection open!");
 
-  ws.on("message", function(message){
-    console.log(message);
-  })
+  socket.emit('message', 'hello from server');
 
+  // ws.on("message", function(message){
+  //   console.log(message);
+  // })
+  //
   var interval = setInterval(function(){
     var message = "ping from server: "+ new Date();
-    ws.send(message, function() { });
+    io.emit('message', message);
   }, 1000);
-
-  ws.on("close", function(){
+  socket.on('click', function(data){
+    console.log(data);
+  })
+  socket.on("disconnect", function(){
     console.log("connection closed");
-    clearInterval(interval);
+    // clearInterval(interval);
   })
 })

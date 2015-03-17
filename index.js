@@ -1,7 +1,8 @@
 var fs   = require('fs');
 var path = require('path');
 
-var ignore = ['.git','.gitignore', 'node_modules', 'coverage', '.vagrant', 'Vagrant']; // extract from .gitignore?
+// should we extract from .gitignore?
+var ignore = ['.git','.gitignore', 'node_modules', 'coverage', '.vagrant', 'Vagrant'];
 
 var dirs = [__dirname]; // GLOBAL list (array) of all directories
 var done = 0;  // we only start watching when done is Zero
@@ -15,8 +16,6 @@ function checkisfile(arg, index, callback) {
     }
     console.log(index +" | " + done +" | " + arg +" | "+fd +" | isFile: " + stat.isFile())
     if(stat.isDirectory() && ignore.indexOf(fd) === -1) {
-      // console.log("Directory: "+arg);
-      // console.log(" ");
       dirs.push(arg);
       walk(arg, callback);
     }
@@ -56,7 +55,7 @@ function walk(dir, callback) {
 // watch all files in this directory and all sub-directories
 function index() {
   dirs = [];
-  console.log("                                                                         Re-Index "+new Date())
+  console.log("                                                                Re-Index "+new Date())
   walk(__dirname, function(){
     if(done === 0){
       uniquedirs = dirs.filter(function(item, pos) {

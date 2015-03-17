@@ -27,3 +27,6 @@ The **simplest** way of re-loading pages on connected devices.
 + Watch: https://www.npmjs.com/package/watch
 (does *half* the job we want, but does not refresh connected devices/browsers)
 + Walk: https://github.com/coolaj86/node-walk
++ Refresh: https://github.com/kinncj/refresh/blob/master/lib/monitor.js
++ Testing Socket.io: http://swizec.com/blog/testing-socket-io-apps/swizec/5625
++ Socket.io: https://github.com/Automattic/socket.io-client
