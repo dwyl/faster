@@ -1,5 +1,28 @@
-require('http').createServer(function (req, res) {
-  res.writeHead(200, {"Content-Type": "text/plain"});
-  res.end("Let's Make Development Faster!\n");
-}).listen(8000);
-console.log("Visit: http://127.0.0.1:8000/");
+var WebSocketServer = require('ws').Server;
+var http = require('http');
+var port = process.env.PORT || 5000;
+var server = http.createServer();
+server.listen(port);
+
+var wss = new WebSocketServer({
+  server: server
+})
+console.log("WS Server Created")
+
+wss.on('connection', function(ws){
+  console.log("websocket connection open!");
+
+  ws.on("message", function(message){
+    console.log(message);
+  })
+
+  var interval = setInterval(function(){
+    var message = "ping from server: "+ new Date();
+    ws.send(message, function() { });
+  }, 1000);
+
+  ws.on("close", function(){
+    console.log("connection closed");
+    clearInterval(interval);
+  })
+})
