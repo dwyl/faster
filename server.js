@@ -1,30 +1,9 @@
-var app = require('http').createServer();
-var port = process.env.PORT || 5000;
-var io  = require('socket.io')(app);
-
-app.listen(port);
-
-io.on('connection', function(socket){
-  console.log("websocket connection open!");
-
-  socket.emit('message', 'hello from server');
-
-  // ws.on("message", function(message){
-  //   console.log(message);
-  // })
-  //
-  var interval = setInterval(function(){
-    var message = "ping from server: "+ new Date();
-    io.emit('message', message);
-  }, 1000);
-  socket.on('click', function(data){
-    console.log(data);
-  })
-  // setTimeout(function(){
-  //   socket.emit('refresh', 'refresh the app');
-  // }, 4000)
-  socket.on("disconnect", function(){
-    console.log("connection closed");
-    // clearInterval(interval);
-  })
-})
+var fs    = require('fs');
+var index = fs.readFileSync(__dirname+'/client.html',"utf8");
+// console.log(index);
+var port = process.env.PORT || 4000;
+require('http').createServer(function (req, res) {
+  res.writeHead(200, {"Content-Type": "text/html"});
+  res.end(index);
+}).listen(port);
+console.log("Visit: http://127.0.0.1:"+port);

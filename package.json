@@ -23,7 +23,10 @@
   },
   "homepage": "https://github.com/ideaq/faster",
   "dependencies": {
+    "chalk": "^1.0.0",
+    "ps-tree": "0.0.3",
     "socket.io": "^1.3.5",
+    "socket.io-client": "^1.3.5",
     "ws": "^0.7.1"
   },
   "devDependencies": {
