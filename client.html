@@ -2,18 +2,20 @@
 <style>
   #refresh {
     display: block;
-    background: url(http://i.imgur.com/Cp0ITNX.png);
-    background-size: 40px 40px;
+    /*background: url(http://i.imgur.com/Cp0ITNX.png);*/
+    background-size: 30px 30px;
     background-repeat: no-repeat;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     position: fixed;
     bottom: 2px;
     left: 2px;
+    z-index: 100;
   }
 </style>
 <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
 <script>
+(function () {
   var socket = io('http://localhost:5000');
   socket.on('message', function(data){
     console.log(data);
@@ -32,16 +34,32 @@
   var green = 'url(http://i.imgur.com/Cp0ITNX.png)';
   var red   = 'url(http://i.imgur.com/WDddlnh.png)';
   var r = document.getElementById("refresh");
-  r.style.backgroundImage = green; // set initial state
+
   r.onclick = function() {
-    console.log(r.style);
+    return toggle();
+  };
+  var toggle = function() {
     if(r.style.backgroundImage === green) {
       console.log("switch to red")
       r.style.backgroundImage = red;
+      localStorage.setItem('faster-refresh', 'no')
     } else {
       console.log("switch to green")
       r.style.backgroundImage = green;
+      localStorage.setItem('faster-refresh', 'yes')
     }
-
-  };
+    console.log("refresh: "+localStorage.getItem('faster-refresh'));
+  }
+  var refresh;
+  var boot = function(){
+    refresh = localStorage.getItem('faster-refresh');
+    console.log("boot refresh: "+refresh);
+    if(refresh === 'yes') {
+      r.style.backgroundImage = green; // set initial state
+    } else {
+      r.style.backgroundImage = red;
+    }
+  }
+  boot();
+}());
 </script>
