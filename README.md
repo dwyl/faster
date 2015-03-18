@@ -13,14 +13,33 @@ We needed a *simpler* way of reloading the "page" when
 files (views/styles/data) changes in our project.  
 See: https://github.com/ideaq/time/issues/81
 
-We tried 
+We tried using [**nodemon**](https://github.com/ideaq/faster/issues/1)
+but found it lacking in two key areas:
+
+**a**. New files/folders added to the project were not watched.  
+**b**. We still had to *manually* refresh each connected client each time.
+
+So, instead of trying to force an *existing* ***general purpose*** tool
+to do the thing that we wanted, we decided to write our own ***specific*** script.
 
 ## What?
 
-![faster diagram](http://i.imgur.com/xXEbnvm.png)
 
 The **simplest** way to ensure the page(s) on *all* connected devices re-load
-when ever
+when ever **any file** or directory is updated (created, changed or deleted) in the project.
+
+![faster diagram](http://i.imgur.com/xXEbnvm.png)
+
+### Key Benefits
+
++ Watches *all* directories and sub-directories (recursively) for any change
++ Responds to *any change* in the files (create, update, delete, re-name.)
++ **Notifies all connected clients** there has been a change so they can re-fresh
+their content.
++ Boots *separate* WebSocket server (from your project) so no attaching required
+(no conflict with existing scripts)
++ Runs the script defined in your `npm run` command as normal
+
 
 ## Usage
 
@@ -42,10 +61,11 @@ npm run faster
 ```
 
 
-### Note: Expects you to have a `start` script in package.json
+### Note: *faster* *Expects* you to have a `start` script in package.json
 
 If you do not have an [**npm start**](https://docs.npmjs.com/cli/start) script,
-add one to your package.json *now*! (it tells other developers how to run your project).
+add one to your package.json *now*!
+(it tells other developers how to run your project).
 
 ### No Global Install Required
 
@@ -63,6 +83,7 @@ the client script only works when the `url` matches **localhost** or **127.0.0.1
 
 ## *NOT* "General Purpose" (Yet!)
 
+Right now, this script is *very* specific
 
 
 ## Research
