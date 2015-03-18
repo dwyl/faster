@@ -1,20 +1,29 @@
 var fs   = require('fs');
 var path = require('path');
 
+var script = '';
+
+process.argv.forEach(function (val, index, array) {
+  console.log(index + ': ' + val);
+});
+
+var exec = require('child_process').exec;
+
 // should we extract from .gitignore?
 var ignore = ['.git','.gitignore', 'node_modules', 'coverage', '.vagrant', 'Vagrant'];
 
-var dirs = [__dirname]; // GLOBAL list (array) of all directories
+var dirs = []; // GLOBAL list (array) of all directories
 var done = 0;  // we only start watching when done is Zero
 
-function checkisfile(arg, index, callback) {
+// check if the arg is a file or directory
+function checkisdir(arg, index, callback) {
   var fd = arg.split('/')[arg.split('/').length-1]; // just the file/dir
   fs.stat(arg, function(err, stat) {
     if(err) {
       console.log(err)
       callback();
     }
-    console.log(index +" | " + done +" | " + arg +" | "+fd +" | isFile: " + stat.isFile())
+    // console.log(index +" | " + done +" | " + arg +" | "+fd +" | isFile: " + stat.isFile());
     if(stat.isDirectory() && ignore.indexOf(fd) === -1) {
       dirs.push(arg);
       walk(arg, callback);
@@ -41,12 +50,12 @@ function walk(dir, callback) {
     }
     if(filecount === 1){
       var file = path.resolve(dir + '/' + files[0]);
-      checkisfile(file, 0, callback);
+      checkisdir(file, 0, callback);
     }
     else {
       for(var i = files.length-1; i >= 0; i--) {
         var file = path.resolve(dir + '/' + files[i]);
-         checkisfile(file, i, callback);
+         checkisdir(file, i, callback);
       }
     }
   });
@@ -54,15 +63,28 @@ function walk(dir, callback) {
 
 // watch all files in this directory and all sub-directories
 function index() {
-  dirs = [];
+  // exec.kill('SIGINT');
+  dirs = [__dirname]; // always include CWD
   console.log("                                                                Re-Index "+new Date())
-  walk(__dirname, function(){
+  walk(__dirname, function() {
     if(done === 0){
       uniquedirs = dirs.filter(function(item, pos) {
         return dirs.indexOf(item) == pos;
       })
       console.log(uniquedirs);
-      // console.log("                                                done.")
+
+      var child = exec('node ./server.js');
+      child.stdout.on('data', function(data) {
+          console.log('stdout: ' + data);
+      });
+      child.stderr.on('data', function(data) {
+          console.log('stdout: ' + data);
+      });
+      child.on('close', function(code) {
+          console.log('closing code: ' + code);
+      });
+
+      console.log("                                                done.")
       uniquedirs.map(function(dir){
         // watch ALL of the dirs!
         fs.watch(dir, function (event, filename) {
@@ -85,6 +107,7 @@ function index() {
 }
 
 index();
+
 
 process.on('uncaughtException', function(err) {
   console.log('ERROR:' + err);

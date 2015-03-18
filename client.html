@@ -21,8 +21,8 @@
     console.log(data);
   })
   setInterval(function(){
-    socket.emit('click', Math.random())
-  }, 10000)
+    socket.emit('click', "Clicked "+ Math.random())
+  }, 3000)
 
   socket.on('refresh', function(data){
     console.log('refreshing content');
@@ -50,9 +50,8 @@
     }
     console.log("refresh: "+localStorage.getItem('faster-refresh'));
   }
-  var refresh;
   var boot = function(){
-    refresh = localStorage.getItem('faster-refresh');
+    var refresh = localStorage.getItem('faster-refresh');
     console.log("boot refresh: "+refresh);
     if(refresh === 'yes') {
       r.style.backgroundImage = green; // set initial state

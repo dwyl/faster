@@ -16,7 +16,7 @@ io.on('connection', function(socket){
   var interval = setInterval(function(){
     var message = "ping from server: "+ new Date();
     io.emit('message', message);
-  }, 100000);
+  }, 1000);
   socket.on('click', function(data){
     console.log(data);
   })
