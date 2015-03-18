@@ -16,10 +16,13 @@ io.on('connection', function(socket){
   var interval = setInterval(function(){
     var message = "ping from server: "+ new Date();
     io.emit('message', message);
-  }, 1000);
+  }, 100000);
   socket.on('click', function(data){
     console.log(data);
   })
+  // setTimeout(function(){
+  //   socket.emit('refresh', 'refresh the app');
+  // }, 4000)
   socket.on("disconnect", function(){
     console.log("connection closed");
     // clearInterval(interval);
