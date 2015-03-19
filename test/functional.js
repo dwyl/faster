@@ -1,39 +1,52 @@
-// create a tree of directories using https://github.com/substack/node-mkdirp
-var mkdirp  = require('mkdirp');
-// delete the temporary directory tree using https://github.com/isaacs/rimraf
-var rimraf = require('rimraf');
-var tempdir =  __dirname+'/tmp'; // root temporary directory
-var dirtree = tempdir + '/foo/bar/baz/bat';
-var fs      = require('fs');
+var fs    = require('fs');
+var path  = require('path');
+var S     = require('./setup');
+var utils = require('../lib/utils');
+var test  = require('tape');
 
-var setup = function(callback) {
-  mkdirp(dirtree, function (err) {
-      if (err) console.error(err)
-      // else console.log('pow!')
+test("utils.isdir > Confirm " +S.rootdir +" IS a directory", function(t){
+  S.setup(function() {
+    utils.isdir(S.rootdir, function(err, isdir){
+      t.equal(err, null, "no errors");
+      t.equal(isdir, true, S.rootdir + " is defs a directory");
+      t.end();
+    }); // end utils.isdir
+  }) // end S.setup
+})
 
-      var filename = dirtree + '/hello.txt';
-      // create a file that will be *Modified* in our test
-      fs.writeFile(filename, "Hi!", function(err) {
-        if(err) {
-          return console.log(err);
-        }
-        console.log(filename + " saved!");
-        callback();
-      });
-  });
-}
+test("utils.isdir > " +S.filename +" is NOT directory", function(t){
+  utils.isdir(S.filename, function(err, isdir){
+    t.equal(err, null, "no errors");
+    t.equal(isdir, false, S.filename + " is NOT a directory");
+    t.end();
+  }); // end utils.isdir
+})
 
-//
-var teardown = function(callback) {
-  rimraf(__dirname+'/tmp/', function(){
-    callback();
-  })
-}
+test("utils.isdir > " +S.rootdir +"/random.txt THROWS error", function(t){
+  var nonexist = S.rootdir +"/random.txt";
+  utils.isdir(nonexist, function(err, isdir) {
+    // console.log(err)
+    t.equal(err.code, 'ENOENT', nonexist+ " does NOT exist");
+    t.end();
+  }); // end utils.isdir
+})
 
-setup(function(){
-  setTimeout(function(){
-    teardown(function(){
-      console.log('all done');
+
+test("utils.isdir > ../.git should be IGNORED", function(t){
+  var ignored = path.resolve(__dirname+"/../.git"); // this should be FOUND but IGNORED as "NOT" a dir
+  utils.isdir(ignored, function(err, isdir) {
+
+    fs.stat(ignored, function(staterr,stat){
+      t.equal(stat.isDirectory(), true, ignored+ " IS a directory but we are ignoring it!");
     })
-  },2000);
+
+    t.equal(err, null, ignored+ " does exist");
+    t.equal(isdir, false, ignored+ " is ignored and treated as NOT a directory!")
+    t.end();
+    // setTimeout(function(){
+    S.teardown(function(){
+      console.log(S.filename + " removed");
+    })
+    // },500);
+  }); // end utils.isdir
 })
