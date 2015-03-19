@@ -8,19 +8,47 @@
    bottom: 0px;
    left: 0px;
    z-index: 100;
-   background-color: white;
    width: 100%;
-   height: 16px;
+   height: 1.4em;
    color: #000;
+   background-color: white;
  }
  #fstr_refresh__ {
-   background-size: 15px 15px;
-   height: 15px;
-   width:  15px;
-   z-index: 200;
+   background-size: 1.4em;
+   height: 1.4em;
+   width:  1.4em;
+   z-index: 300;
  }
  #fstr_msg__ {
-   left: 25px;
+   margin-top:0.2em;
+   margin-left: 1.6em;
    z-index: 200;
-   font-size: 0.8em;
+   line-height: 1.4em;
+   font-size: 0.9em;
  }
+
+/* http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/ */
+@media	only screen and (-webkit-min-device-pixel-ratio: 1.3),
+  only screen and (-o-min-device-pixel-ratio: 13/10),
+  only screen and (min-resolution: 120dppx)
+{
+  #fstr__, #fstr_refresh__, #fstr_msg__ {
+    height: 4em;
+  }
+  #fstr_refresh__ {
+    background-size: 3.8em;
+    height: 3.8em;
+    width:  3.8em;
+  }
+  #fstr_msg__ {
+    height: 2em;
+    left: 1em;
+    line-height: 2em;
+    font-size: 2em;
+    font-weight: bold;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+}

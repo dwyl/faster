@@ -1,12 +1,12 @@
 {
   "name": "faster",
-  "version": "2.3.5",
+  "version": "2.3.6",
   "description": "faster way to reload your web project on all connected devices",
   "main": "index.js",
   "scripts": {
     "test": "tape",
-    "start":"node ./example/server.js",
-    "faster":"bin/faster.js"
+    "start": "node ./example/server.js",
+    "faster": "bin/faster.js"
   },
   "bin": {
     "faster": "./bin/faster.js"
@@ -34,6 +34,8 @@
     "socket.io-client": "^1.3.5"
   },
   "devDependencies": {
+    "mime": "^1.3.4",
+    "node-static": "^0.7.6",
     "tape": "^3.5.0"
   }
 }

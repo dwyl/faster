@@ -6,12 +6,11 @@ Helps you ***develop*** node.js web apps/sites ***faster***
 by ***automatically re-loading*** any page,  
 in ***all connected browsers*** each time ***any file*** in your project is ***updated***.
 
-
 ## Why?
 
-We needed a *simpler* way of reloading the "page" when
-files (views/styles/data) changes in our project.  
-See: https://github.com/ideaq/time/issues/81
+We need a *simpler* way of reloading the "page" when
+files (views/styles/etc) change in our project.  
+See: [time/81](https://github.com/ideaq/time/issues/81)
 
 So, instead of trying to force an *existing* ***general purpose*** tool
 to do the thing that we wanted,  
@@ -41,12 +40,19 @@ and all files in **/node_modules**  (useful when your project has
 
 ## Usage
 
+Using this module in ***4 easy steps***
+
+### 1. Install from NPM
+
 Install and save a *development dependency*:
 
 ```sh
 npm install faster --save-dev
 ```
-Then add the following line to the `scripts` section of your `package.json`.
+
+### 2. Add the `faster` script entry to your `package.json`
+
+Add the following line to the `scripts` section of your `package.json`.
 
 ```js
 "faster":"./node_modules/bin/faster.js"
