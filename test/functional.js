@@ -4,9 +4,9 @@ var S     = require('./setup');
 var utils = require('../lib/utils');
 var test  = require('tape');
 
-// function next(list){
-//   console.log("next: "+list.length);
-// }
+var next = function(list){
+  console.log("next: "+list.length);
+}
 
 test("utils.isdir > Confirm " +S.rootdir +" IS a directory", function(t){
   S.setup(function() {
@@ -14,7 +14,7 @@ test("utils.isdir > Confirm " +S.rootdir +" IS a directory", function(t){
       t.equal(err, null, "no errors");
       t.equal(isdir, true, S.rootdir + " is defs a directory");
       t.end();
-    }, S.next); // end utils.isdir
+    }, next); // end utils.isdir
   }) // end S.setup
 })
 
@@ -23,7 +23,7 @@ test("utils.isdir > " +S.filename +" is NOT directory", function(t){
     t.equal(err, null, "no errors");
     t.equal(isdir, false, S.filename + " is NOT a directory");
     t.end();
-  }, S.next); // end utils.isdir
+  }, next); // end utils.isdir
 })
 
 test("utils.isdir > " +S.rootdir +"/random.txt THROWS error", function(t){
@@ -32,7 +32,7 @@ test("utils.isdir > " +S.rootdir +"/random.txt THROWS error", function(t){
     // console.log(err)
     t.equal(err.code, 'ENOENT', nonexist+ " does NOT exist");
     t.end();
-  }, S.next); // end utils.isdir
+  }, next); // end utils.isdir
 })
 
 test("utils.isdir > ../.git should be IGNORED", function(t){
@@ -47,7 +47,7 @@ test("utils.isdir > ../.git should be IGNORED", function(t){
     t.equal(err, null, ignored+ " does exist");
     t.equal(isdir, false, ignored+ " is ignored and treated as NOT a directory!")
     t.end();
-  }, S.next); // end utils.isdir
+  }, next); // end utils.isdir
 })
 
 
@@ -60,7 +60,7 @@ test("utils.isdirhandler > appends " +S.rootdir +" to dirlist", function(t) {
       t.equal(dirlist[0], S.rootdir, S.rootdir+" is the only item in dirlist")
       t.end();
     }); // utils.isdirhandler
-  }, S.next); // end utils.isdir
+  }, next); // end utils.isdir
 })
 
 
@@ -71,7 +71,7 @@ test("utils.isdirhandler > appends " +S.filename +" to dirlist", function(t) {
     utils.isdirhandler(err, isdir, dirlist, function(dirlist) {
       t.equal(dirlist.length, 0, S.filename+ " NOT added to dirlist ")
       t.end();
-    }, S.next);
+    }, next);
 
     // t.equal(err, null, ignored+ " does exist");
     // t.equal(isdir, false, ignored+ " is ignored and treated as NOT a directory!")
