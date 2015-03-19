@@ -69,15 +69,15 @@ npm run faster
 #### *faster* *Expects* you to have a `start` script in package.json
 
 If you do not have an [**npm start**](https://docs.npmjs.com/cli/start) script,
-add one to your package.json *now*!
-(it tells other developers how to run your project).
+add one to your package.json *now*!  
+(`npm start` is how other developers will run your project).
 
 Example package.json `start` entry:
 ```js
 {
   "name" : "your-project",
   "scripts" : {
-    "start" : "node server.js"
+    "start" : "node server.js",
     "faster": "./node_modules/bin/faster.js"
   }
 }
@@ -109,13 +109,13 @@ Right now, this script is *very* specific
 
 ### *Partial* Alternatives
 
-+ **Nodemon** the granddad of node file watch-and-reloaders: https://github.com/remy/nodemon
++ **Nodemon** the granddad of node file watch-and-reloaders: https://github.com/remy/nodemon  
 (does not restart your script when *any* file is updated or *new* files created...)
 + **node-livereload**:
 https://github.com/napcs/node-livereload
 (we had a look at, but did not fit our needs ... uses *polling*)
 + **Meteor** has live reloading https://github.com/meteor/meteor
-+ **Watch**: https://www.npmjs.com/package/watch
++ **Watch**: https://www.npmjs.com/package/watch  
 (has lots of good ideas and code from *many* great contributors ...
   does *half* the job we want, but does not refresh connected devices/browsers)
 + Walk: https://github.com/coolaj86/node-walk
