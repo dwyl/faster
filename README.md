@@ -20,25 +20,29 @@ but found it lacking in two key areas:
 **b**. We still had to *manually* refresh each connected client each time.
 
 So, instead of trying to force an *existing* ***general purpose*** tool
-to do the thing that we wanted, we decided to write our own ***specific*** script.
+to do the thing that we wanted,  
+we decided to write our own ***specific*** script.
 
 ## What?
 
 
-The **simplest** way to ensure the page(s) on *all* connected devices re-load
-when ever **any file** or directory is updated (created, changed or deleted) in the project.
+The ***simplest*** way to ensure the page(s) on *all* connected devices (*live*) ***re-load***  
+when ever ***any file*** *or* ***directory*** is ***updated*** (created, changed or deleted) in the project.
 
 ![faster diagram](http://i.imgur.com/xXEbnvm.png)
 
 ### Key Benefits
 
-+ Watches *all* directories and sub-directories (recursively) for any change
++ ***Watches all directories*** *and* ***sub-directories*** (*recursively*) for ***any change***
 + Responds to *any change* in the files (create, update, delete, re-name.)
-+ **Notifies all connected clients** there has been a change so they can re-fresh
++ ***Notifies all connected clients*** there has been a change so they can ***re-fresh***
 their content.
 + Boots *separate* WebSocket server (from your project) so no attaching required
 (no conflict with existing scripts)
 + Runs the script defined in your `npm run` command as normal
++ Automatically ***ignores*** .**gitignore**, .**git**
+and all files in **/node_modules**  (useful when your project has  
+  dependencies you don't expect to change *while* you are running your dev server)
 
 
 ## Usage
@@ -60,40 +64,58 @@ And then run the command on your local machine using:
 npm run faster
 ```
 
+### Notes
 
-### Note: *faster* *Expects* you to have a `start` script in package.json
+#### *faster* *Expects* you to have a `start` script in package.json
 
 If you do not have an [**npm start**](https://docs.npmjs.com/cli/start) script,
 add one to your package.json *now*!
 (it tells other developers how to run your project).
 
-### No Global Install Required
+Example package.json `start` entry:
+```js
+{
+  "name" : "your-project",
+  "scripts" : { "start" : "node server.js" }
+}
+```
+
+#### No Global Install Required
 
 We hate it when module authors *require* ***global*** installation,
 so we encourage you to install this module *locally* to your app
 
 
-## Development *ONLY*
+#### Development *ONLY*
 
 *Please* do not use this in Production.
 (The Socket.io server on port 4242)
 
 To *prevent* ***accidental*** running of this script in Prod,
-the client script only works when the `url` matches **localhost** or **127.0.0.1**.
+the client script only works when the `url` *matches* ***localhost*** or ***127.0.0.1***.
 
-## *NOT* "General Purpose" (Yet!)
+#### *NOT* "*General Purpose*" (Yet!)
 
 Right now, this script is *very* specific
 
 
 ## Research
 
-+ Nodemon: https://github.com/remy/nodemon
-+ https://github.com/napcs/node-livereload (uses polling)
-+ https://github.com/meteor/meteor
-+ Watch: https://www.npmjs.com/package/watch
-(does *half* the job we want, but does not refresh connected devices/browsers)
+### *Partial* Alternatives
+
++ **Nodemon** the granddad of node file watch-and-reloaders: https://github.com/remy/nodemon
+(does not restart your script when *any* file is updated or *new* files created...)
++ **node-livereload**:
+https://github.com/napcs/node-livereload
+(we had a look at, but did not fit our needs ... uses *polling*)
++ **Meteor** has live reloading https://github.com/meteor/meteor
++ **Watch**: https://www.npmjs.com/package/watch
+(has lots of good ideas and code from *many* great contributors ...
+  does *half* the job we want, but does not refresh connected devices/browsers)
 + Walk: https://github.com/coolaj86/node-walk
 + Refresh: https://github.com/kinncj/refresh/blob/master/lib/monitor.js
+
+### Background Reading
+
 + Testing Socket.io: http://swizec.com/blog/testing-socket-io-apps/swizec/5625
 + Socket.io: https://github.com/Automattic/socket.io-client

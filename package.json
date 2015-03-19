@@ -1,11 +1,12 @@
 {
   "name": "faster",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "faster way to reload your web project on all connected devices",
   "main": "index.js",
   "scripts": {
     "test": "tape",
-    "start":"node server.js"
+    "start":"node ./example/server.js",
+    "faster":"bin/faster.js"
   },
   "bin": {
   "faster": "./bin/faster.js"
