@@ -23,5 +23,6 @@
   "supernew"      : false,
   "sub"           : true,
   "undef"         : true,
-  "white"         : true
+  "white"         : true,
+  "browser"       : true
 }
