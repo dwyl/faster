@@ -4,7 +4,8 @@ var test  = require('tape');
 var chalk = require('chalk');
 
 var S     = require('./setup');
-
+// console.log(S);
+// console.log(chalk.bgGreen.black.bold(" EMPTY: " +S.empty +" "));
 // dummy functions:
 var final = function(list) {
   console.log(">>>> final: "+list.length);
@@ -15,7 +16,7 @@ var cb    = function(list) {
 var kw    = function(fd, dirlist, counter, afterwalking) {
   console.log(">>>> kw: " + list.length)
 }
-//
+
 // test(chalk.green("utils.isdir > Confirm " +S.rootdir +" IS a directory (Keep Walking)"), function(t){
 //   S.setup(function() {
 //     var utils = require('../lib/utils');
@@ -28,7 +29,7 @@ var kw    = function(fd, dirlist, counter, afterwalking) {
 //     }, final); // end utils.isdir
 //   }) // end S.setup
 // })
-//
+
 // test(chalk.green("utils.isdir > " +S.filename +" is NOT directory"), function(t){
 //   var utils = require('../lib/utils');
 //   utils.setcounter(1);
@@ -86,17 +87,31 @@ var kw    = function(fd, dirlist, counter, afterwalking) {
 //   t.end();
 // })
 
+/** setup creates a sample directory tree:
+
+tmp/
+ |-- hi.js
+ |-- foo/
+      |-- bar/
+      |    |-- baz/
+      |         |-- hello.txt
+      |         |-- empty/
+      |-- bit/
+      |-- bat/
+      |-- bye.js
+**/
+
 test(chalk.cyan("utils.walk > " + __dirname), function(t) {
   var utils = require('../lib/utils');
   utils.setcounter(0);
-  utils.walk(__dirname, [], function(dirlist) {
+  utils.walk(__dirname+'/tmp/foo', [], function(dirlist) {
     console.log(dirlist);
-    t.equal(dirlist.length, 6, __dirname+ " has so many child dirs...");
+    t.equal(dirlist.length, 5, __dirname+ " has so many child dirs...");
     t.end();
   }); // end utils.isdir
 })
 
-// test(chalk.green.bold("utils.walk > " + S.empty +" requires checking!"), function(t) {
+// test(chalk.green.bold("utils.walk > " + S.empty +" "), function(t) {
 //   var dirlist = [];
 //   var utils = require('../lib/utils');
 //   utils.walk(S.empty, dirlist, function(dirlist) {
