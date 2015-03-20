@@ -143,6 +143,10 @@ https://github.com/napcs/node-livereload
 + Walk: https://github.com/coolaj86/node-walk
 + Refresh: https://github.com/kinncj/refresh/blob/master/lib/monitor.js
 
+### Inspiration
+
++ Flat: https://github.com/hughsk/flat
+
 ### Background Reading
 
 + Testing Socket.io: http://swizec.com/blog/testing-socket-io-apps/swizec/5625
