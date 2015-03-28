@@ -8,29 +8,25 @@ var terminate = require('terminate'); // knew this would come in handy! ;-)
 var fs = require('fs');
 // start SocketIO CLIENT so we can listen for the restart event
 var ioclient = require('socket.io-client');
-var sio;
+// var sio;
+var socket;
 
 var faster = require('../lib/');
 
-// var faster = exec('node ./bin/faster.js', function(error, stdout, stderr) {
-//   console.log("faster running");
-//   console.log('stdout: ' + stdout);
-//   console.log(chalk.bgRed.white.bold('stderr: ' + stderr));
-//   if (error !== null) {
-//       console.log(chalk.bgRed.white.bold('exec error: ' + error));
-//   }
-// })
-
-test(cyan('Emit the "secret" restart event'), function(t){
+test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), function(t){
   // setTimeout(function() {
   faster(function(child){
     // console.log("calback called!");
     console.log(chalk.bgRed.white.bold(child.pid));
-    sio = ioclient.connect('http://localhost:'+port, {reconnect: true});
-    sio.on(secret, function(data) {
-      // socket.broadcast.emit('refresh', data);
-      console.log(chalk.bgYellow.red(data));
-    });
+
+    setTimeout(function(){
+      console.log(chalk.bgYellow.red.bold(" Socket.io Client Started "))
+      socket = require('socket.io-client')('http://localhost:'+port);
+      socket.on('refresh', function(data) {
+        // socket.broadcast.emit('refresh', data);
+        console.log(chalk.bgYellow.red(data));
+      });
+    }, 500);
 
     // sio.emit(secret, ">> file updated!");
     var filename = __dirname + "/hai.txt";
@@ -41,7 +37,7 @@ test(cyan('Emit the "secret" restart event'), function(t){
       }
       // t.end();
       setTimeout(function(){
-        sio.disconnect();
+        socket.disconnect();
         faster.terminate(function(err, done){
           console.log(err, done);
           t.end();
