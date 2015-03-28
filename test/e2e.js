@@ -24,51 +24,29 @@ var faster = require('../lib/');
 test(cyan('Emit the "secret" restart event'), function(t){
   // setTimeout(function() {
   faster(function(child){
-    console.log(child.pid);
+    // console.log("calback called!");
+    console.log(chalk.bgRed.white.bold(child.pid));
     sio = ioclient.connect('http://localhost:'+port, {reconnect: true});
     sio.on(secret, function(data) {
       // socket.broadcast.emit('refresh', data);
       console.log(chalk.bgYellow.red(data));
     });
+
     // sio.emit(secret, ">> file updated!");
-    var filename = __dirname + "/hai.text";
+    var filename = __dirname + "/hai.txt";
     var time = new Date().getTime();
-    setTimeout(function(){
-      fs.writeFile(filename, time, function(err){
-        if(err){
-          console.log(err);
-        }
-        // t.end();
-        terminate(child.pid, function(err, done){
-         t.end();
+    fs.writeFile(filename, time, function(err){
+      if(err){
+        console.log(err);
+      }
+      // t.end();
+      setTimeout(function(){
+        sio.disconnect();
+        faster.terminate(function(err, done){
+          console.log(err, done);
+          t.end();
         });
-      })
-    }, 2000)
+      },3000);
+    });
   })
-
-    // fs.writeFileSync(filename, 'hai', 'utf8');
-    // setTimeout(function() {
-    //
-    //   // terminate(faster.pid, function(err, done){
-    //   //   t.end();
-    //   //   // process.exit();
-    //   // });
-    // }, 1000);
-  // }, 1500);
 });
-
-
-
-
-// test(cyan('Attempt to terminate without providing a Parent Process ID'), function (t) {
-//   var errmsg = "Error: No pid supplied to Terminate!"
-//   try {
-//     terminate(); // this should throw an error
-//   }
-//   catch (e) {
-//     t.equal(e.toString(), errmsg, green("✓ Fails when no callback supplied (as expected)"))
-//     t.end();     // nothing to test
-//   }
-// });
-
-// update a file in test/tmp/foo/ to trigger an update
