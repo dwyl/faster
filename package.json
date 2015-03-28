@@ -43,11 +43,18 @@
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
-    "istanbul": "^0.3.8",
+    "istanbul": "^0.3.11",
     "jshint": "^2.6.3",
-    "mkdirp": "^0.5.0",
-    "rimraf": "^2.3.2",
-    "tap-spec": "^2.2.2",
-    "tape": "^3.5.0"
+    "pre-commit": "1.0.6",
+    "tape": "^3.5.0",
+    "tap-spec": "^2.2.2"
+  },
+  "pre-commit": [
+    "jshint",
+    "coverage",
+    "codeclimate"
+  ],
+  "engines": {
+    "node": ">=0.10"
   }
 }
