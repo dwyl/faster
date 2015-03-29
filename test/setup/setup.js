@@ -24,31 +24,41 @@ tmp/
 
 var setup = function(callback) {
   mkdirp(empty, function(err){
-    if (err) console.error(err)
+    if (err) {
+      console.error(err)
+    }
   })
 
   mkdirp(rootdir+"/foo/bit", function(err){
-    if (err) console.error(err)
+    if (err) {
+      console.error(err)
+    }
     var filename = rootdir+'/doo/bye.js'
     fs.writeFile(filename, "alert('bye!');", function(err) {
       if(err) {
         return console.log(err);
       }
-      console.log(filename + " saved!");
+      // console.log(filename + " saved!");
     });
   })
 
   mkdirp(rootdir+"/foo/bit", function(err){
-    if (err) console.error(err)
+    if (err) {
+      console.error(err)
+    }
   })
 
   mkdirp(rootdir+"/foo/bat", function(err){
-    if (err) console.error(err)
+    if (err) {
+      console.error(err)
+    }
   })
 
 
   mkdirp(dirtree, function (err) {
-    if (err) console.error(err)
+    if (err) {
+      console.error(err)
+    }
     // else console.log('pow!')
 
     // create a file that will be *Modified* in our test
@@ -56,14 +66,14 @@ var setup = function(callback) {
       if(err) {
         return console.log(err);
       }
-      console.log(filename + " saved!");
+      // console.log(filename + " saved!");
     });
     // create a file that will be *Modified* in our test
     fs.writeFile(filename, "Hi!", function(err) {
       if(err) {
         return console.log(err);
       }
-      console.log(filename + " saved!");
+      // console.log(filename + " saved!");
       callback();
     });
   });
