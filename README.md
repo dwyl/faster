@@ -1,10 +1,18 @@
-![rocket turtle](http://i.imgur.com/bT7uPHE.png)
-
 # faster
 
 Helps you ***develop*** node.js web apps/sites ***faster***
 by ***automatically re-loading*** any page,  
 in ***all connected browsers*** each time ***any file*** in your project is ***updated***.
+
+![rocket turtle](http://i.imgur.com/bT7uPHE.png)
+
+[![Build Status](https://travis-ci.org/ideaq/faster.svg)](https://travis-ci.org/ideaq/faster)
+[![Code Climate](https://codeclimate.com/github/ideaq/faster/badges/gpa.svg)](https://codeclimate.com/github/ideaq/faster)
+[![Test Coverage](https://codeclimate.com/github/ideaq/faster/badges/coverage.svg)](https://codeclimate.com/github/ideaq/faster)
+[![npm version](https://badge.fury.io/js/faster.svg)](http://badge.fury.io/js/faster)
+[![Node.js Version](https://img.shields.io/node/v/terminate.svg?style=flat)](http://nodejs.org/download)
+[![Dependency Status](https://david-dm.org/ideaq/faster.svg)](https://david-dm.org/ideaq/faster)
+
 
 ## Why?
 

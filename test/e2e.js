@@ -14,35 +14,30 @@ var socket;
 var faster = require('../lib/');
 
 test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), function(t){
-  // setTimeout(function() {
-  faster(function(child){
-    // console.log("calback called!");
-    console.log(chalk.bgRed.white.bold(child.pid));
 
+  faster(function(child){
+    t.true(parseInt(child.pid, 10) > 0, green("✓ Child Process Running ") + cyan(child.pid))
     setTimeout(function(){
-      console.log(chalk.bgYellow.red.bold(" Socket.io Client Started "))
       socket = require('socket.io-client')('http://localhost:'+port);
+      console.log(chalk.bgYellow.red.bold(" Socket.io Client Started "))
       socket.on('refresh', function(data) {
-        // socket.broadcast.emit('refresh', data);
         console.log(chalk.bgYellow.red(data));
       });
     }, 500);
 
-    // sio.emit(secret, ">> file updated!");
     var filename = __dirname + "/hai.txt";
     var time = new Date().getTime();
     fs.writeFile(filename, time, function(err){
-      if(err){
+      if(err) {
         console.log(err);
       }
-      // t.end();
       setTimeout(function(){
         socket.disconnect();
         faster.terminate(function(err, done){
-          console.log(err, done);
+          t.true(done, green("✓ Cleanup Complete"))
           t.end();
         });
-      },3000);
+      },2000);
     });
   })
 });
