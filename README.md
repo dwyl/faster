@@ -1,10 +1,18 @@
-![rocket turtle](http://i.imgur.com/bT7uPHE.png)
-
 # faster
 
 Helps you ***develop*** node.js web apps/sites ***faster***
 by ***automatically re-loading*** any page,  
 in ***all connected browsers*** each time ***any file*** in your project is ***updated***.
+
+![rocket turtle](http://i.imgur.com/bT7uPHE.png)
+
+[![Build Status](https://travis-ci.org/ideaq/faster.svg)](https://travis-ci.org/ideaq/faster)
+[![Code Climate](https://codeclimate.com/github/ideaq/faster/badges/gpa.svg)](https://codeclimate.com/github/ideaq/faster)
+[![Test Coverage](https://codeclimate.com/github/ideaq/faster/badges/coverage.svg)](https://codeclimate.com/github/ideaq/faster)
+[![npm version](https://badge.fury.io/js/faster.svg)](http://badge.fury.io/js/faster)
+[![Node.js Version](https://img.shields.io/node/v/terminate.svg?style=flat)](http://nodejs.org/download)
+[![Dependency Status](https://david-dm.org/ideaq/faster.svg)](https://david-dm.org/ideaq/faster)
+
 
 ## Why?
 
@@ -32,10 +40,9 @@ when ever ***any file*** *or* ***directory*** is ***updated*** (created, changed
 their content.
 + Boots *separate* WebSocket server (from your project) so no attaching required
 (no conflict with existing scripts)
-+ Runs the script defined in your `npm run` command as normal
-+ Automatically ***ignores*** .**gitignore**, .**git**
-and all files in **/node_modules**  (useful when your project has  
-  dependencies you don't expect to change *while* you are running your dev server)
++ Runs the script defined in your `npm start` script/command as normal
++ Automatically ***ignores*** .**gitignore**, .**git** and all files in **/node_modules**  
+(useful when your project has dependencies you don't expect to change *while* you are running your dev server)
 
 
 ## Usage
@@ -57,11 +64,15 @@ Add the following line to the `scripts` section of your `package.json`.
 ```js
 "faster":"./node_modules/bin/faster.js"
 ```
+### 3. Add the `client.js` script entry to your Template file
+
 *and* add this script to the main/layout template in your project:
 
 ```html
 <script src="https://rawgit.com/ideaq/faster/master/lib/client.js"></script>
 ```
+
+### 4. Run *Faster*
 
 Now you can run the following command on your local machine:
 
@@ -89,11 +100,14 @@ Example package.json `start` entry:
 }
 ```
 
-#### No Global Install Required
+#### *No Global Install* Required
 
-We hate it when module authors *require* ***global*** installation,
-so we encourage you to install this module *locally* to your app
-
+We *hate* it when module authors *forece* ***global*** installation,
+so we encourage you to install this module *locally* to your app.  
+Save it as a
+[**devDependency**](http://stackoverflow.com/a/22004559/1148249)
+so other developers know that ***faster*** is *useful*
+when they try to contribute to your project.
 
 #### Development *ONLY*
 
@@ -106,6 +120,16 @@ the client script only works when the `url` *matches* ***localhost*** or ***127.
 #### *NOT* "*General Purpose*" (Yet!)
 
 Right now, this script is *very* specific
+
+#### Windows Support ... *Untested*!
+
+> We have *not* tried this on Windows.
+> If anyone wants to try, please
+```sh
+git clone https://github.com/ideaq/faster.git && cd faster
+npm install && npm test
+```
+> and let us know what you see...!
 
 <br />
 <hr />
@@ -126,6 +150,10 @@ https://github.com/napcs/node-livereload
   does *half* the job we want, but does not refresh connected devices/browsers)
 + Walk: https://github.com/coolaj86/node-walk
 + Refresh: https://github.com/kinncj/refresh/blob/master/lib/monitor.js
+
+### Inspiration
+
++ Flat: https://github.com/hughsk/flat
 
 ### Background Reading
 

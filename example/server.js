@@ -1,10 +1,19 @@
 var fs     = require('fs');
 var path   = require('path');
-var index  = fs.readFileSync(__dirname+'/index.html',"utf8");
 
-var port = process.env.PORT || 5000;
+var index = function(res){
+  fs.readFile(__dirname+'/index.html', function(err, data) {
+    res.writeHead(200, {"Content-Type": "text/html"});
+    if(err){
+      return res.end(err);
+    } else {
+      return res.end(data.toString())
+    }
+  });
+}
+
+var port = process.env.PORT || 8000;
 require('http').createServer(function (req, res) {
-  // console.log('GET: '+req.url);
   if(req.url.search('.') > -1) {
     var f    = req.url.split('/');
     var file = f[f.length-1];
@@ -19,12 +28,10 @@ require('http').createServer(function (req, res) {
       return res.end(client);
     }
     else {
-      res.writeHead(200, {"Content-Type": "text/html"});
-      return res.end(index);
+      return index(res);
     }
   } else {
-    res.writeHead(200, {"Content-Type": "text/html"});
-    return res.end(index);
+    return index(res);
   }
 }).listen(port);
 console.log("Visit: http://127.0.0.1:"+port);
