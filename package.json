@@ -1,6 +1,6 @@
 {
   "name": "faster",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "faster way to reload your web project on all connected devices",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,6 @@
   "homepage": "https://github.com/ideaq/faster",
   "dependencies": {
     "chalk": "^1.0.0",
-    "ignored": "^2.0.1",
     "listdirs": "^3.0.0",
     "ps-tree": "0.0.3",
     "socket.io": "^1.3.5",
