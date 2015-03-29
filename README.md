@@ -62,7 +62,7 @@ npm install faster --save-dev
 Add the following line to the `scripts` section of your `package.json`.
 
 ```js
-"faster":"./node_modules/bin/faster.js"
+"faster":"./node_modules/faster/bin/faster.js"
 ```
 ### 3. Add the `client.js` script entry to your Template file
 
