@@ -14,7 +14,7 @@ var socket;
 var faster = require('../lib/');
 
 test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), function(t){
-
+  
   faster(function(child){
     t.true(parseInt(child.pid, 10) > 0, green("✓ Child Process Running ") + cyan(child.pid))
     setTimeout(function(){
@@ -44,6 +44,7 @@ test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), functi
       t.end();
     });
   })
+
 });
 
 var Wreck = require('wreck');
