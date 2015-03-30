@@ -62,6 +62,9 @@ test(cyan('Access Faster Server style.css and client.js'), function(t){
   Wreck.get('http://localhost:'+port+'/client.js', function (err, res, payload) {
     t.true(payload.indexOf('function') > -1, "✓ client.js loaded");
   });
+  Wreck.get('http://localhost:'+port+'/socket.io.js', function (err, res, payload) {
+    t.true(payload.indexOf('function') > -1, "✓ client.js loaded");
+  });
   Wreck.get('http://localhost:'+port+'/fail.html', function (err, res, payload) {
     // console.log(payload);
     t.equal(payload, '404', "✓ fail should 404");
@@ -81,19 +84,3 @@ test(cyan('Shut Down Faster'), function(t){
     });
   },2000);
 });
-
-// test(cyan('Boot and shutdown quickly to test "real use"'), function(t){
-//   setTimeout(function(){
-//     process.env.BASE = false;
-//     console.log(red("BASE: "+process.env.BASE));
-//     faster(function(child) {
-//       setTimeout(function(){
-//         faster.terminate(function(err, done){
-//           t.true(done, green("✓ Cleanup Complete"))
-//
-//         });
-//       },500)
-//       t.end();
-//     });
-//   },500);
-// });
