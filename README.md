@@ -111,7 +111,7 @@ Example package.json `start` entry:
   "name" : "your-project",
   "scripts" : {
     "start" : "node server.js",
-    "faster": "./node_modules/bin/faster.js"
+    "faster": "./node_modules/faster/bin/faster.js"
   }
 }
 ```

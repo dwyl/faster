@@ -14,8 +14,10 @@ var socket;
 var faster = require('../lib/');
 
 test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), function(t){
-  
-  faster(function(child){
+  console.log(cyan("DEV: "+process.env.DEV));
+  delete process.env.DEV;
+  console.log(red("DEV: "+process.env.DEV));
+  faster('/../', function(child){
     t.true(parseInt(child.pid, 10) > 0, green("✓ Child Process Running ") + cyan(child.pid))
     setTimeout(function(){
       socket = require('socket.io-client')('http://localhost:'+port);
@@ -40,6 +42,7 @@ test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), functi
       if(err) {
         console.log(err);
       }
+
       // socekt should receive a message here...
       t.end();
     });
@@ -78,3 +81,19 @@ test(cyan('Shut Down Faster'), function(t){
     });
   },2000);
 });
+
+// test(cyan('Boot and shutdown quickly to test "real use"'), function(t){
+//   setTimeout(function(){
+//     process.env.BASE = false;
+//     console.log(red("BASE: "+process.env.BASE));
+//     faster(function(child) {
+//       setTimeout(function(){
+//         faster.terminate(function(err, done){
+//           t.true(done, green("✓ Cleanup Complete"))
+//
+//         });
+//       },500)
+//       t.end();
+//     });
+//   },500);
+// });
