@@ -1,6 +1,6 @@
 {
   "name": "faster",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "faster way to reload your web project on all connected devices",
   "main": "index.js",
   "scripts": {
@@ -45,8 +45,9 @@
     "istanbul": "^0.3.11",
     "jshint": "^2.6.3",
     "pre-commit": "1.0.6",
+    "tap-spec": "^2.2.2",
     "tape": "^3.5.0",
-    "tap-spec": "^2.2.2"
+    "wreck": "^5.3.0"
   },
   "pre-commit": [
     "jshint",
