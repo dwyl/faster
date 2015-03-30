@@ -32,6 +32,15 @@ test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), functi
         console.log(err);
       }
       // socekt should receive a message here...
+      // t.end();
+    });
+    // update npm-debug.log
+    filename = __dirname + "/setup/npm-debug.log";
+    fs.writeFile(filename, time, function(err){
+      if(err) {
+        console.log(err);
+      }
+      // socekt should receive a message here...
       t.end();
     });
   })
