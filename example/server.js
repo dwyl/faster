@@ -34,4 +34,17 @@ require('http').createServer(function (req, res) {
     return index(res);
   }
 }).listen(port);
-console.log("Visit: http://127.0.0.1:"+port);
+
+var os = require('os');
+var interfaces = os.networkInterfaces();
+var ip = [];
+for (var k in interfaces) {
+  for (var k2 in interfaces[k]) {
+    var address = interfaces[k][k2];
+    if (address.family === 'IPv4' && !address.internal) {
+      ip.push(address.address);
+    }
+  }
+}
+
+console.log("Visit: http://" + ip[0] +":"+port);
