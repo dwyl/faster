@@ -14,10 +14,6 @@ var socket;
 var faster = require('../lib/');
 var basedir = '/../';
 
-// test(cyan('Init Faster Without Callback'), function(t){
-//
-// });
-
 test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), function(t){
   setTimeout(function(){
     faster(basedir, function(child){
@@ -36,8 +32,7 @@ test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), functi
         if(err) {
           console.log(err);
         }
-        // socekt should receive a message here...
-        // t.end();
+        // soceket should receive a message here...
       });
       // update npm-debug.log
       filename = __dirname + "/setup/npm-debug.log";
@@ -45,8 +40,6 @@ test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), functi
         if(err) {
           console.log(err);
         }
-
-        // socekt should receive a message here...
         t.end();
       });
     })
