@@ -69,8 +69,25 @@ Add the following line to the `scripts` section of your `package.json`.
 *and* add this script to the main/layout template in your project:
 
 ```html
-<script src="https://rawgit.com/ideaq/faster/master/lib/client.js"></script>
+<script src='https://rawgit.com/ideaq/faster/master/lib/client.js'></script>
 ```
+
+***Note***: *if* you ***prefer*** to ***run Faster*** 100% ***locally*** you will
+need to load the script in your template using your **LAN IP Address**:
+
+```html
+<script src='http://<YOUR.LAN.IP.ADDRESS>:4242/client.js'></script>
+```
+
+*Handily*, ***Faster*** will inform you what your LAN IP is when you boot it!
+(Just see the **Terminal**)
+
+But... because your LAN IP address will *change* if you don't have *fixed*
+IP assignment (i.e. you are using a Laptop on WiFi...)
+you will need to update your html/template each time your IP changes...
+This can get *tedious* so ***we recommend*** using the ***CDN script*** above
+in your ***template file***.
+
 
 ### 4. Run *Faster*
 
@@ -79,7 +96,6 @@ Now you can run the following command on your local machine:
 ```sh
 npm run faster
 ```
-
 
 ### Notes
 
@@ -95,10 +111,26 @@ Example package.json `start` entry:
   "name" : "your-project",
   "scripts" : {
     "start" : "node server.js",
-    "faster": "./node_modules/bin/faster.js"
+    "faster": "./node_modules/faster/bin/faster.js"
   }
 }
 ```
+
+#### We *Recommend* Accessing Your App by the *LAN IP Address*
+
+While we ***recommend*** using the **CDN-hosted** ***client.js*** in your
+template file (see **step 3** *above*),  
+if you want to ***test*** your web application on ***multiple devices***
+e.g. in your office/workspace's **Device Lab**
+
+![Device Lab](http://i.imgur.com/bnDedwg.jpg)
+
+You will need to use the **LAN IP Address** to access the app from the devices.  
+Again, helpfully, ***Faster*** tells what the **LAN IP Address is
+when you boot your app using the `npm run faster` command:
+
+![faster-boot-console-explain-basedir](https://cloud.githubusercontent.com/assets/194400/6909776/a6d8573e-d741-11e4-8582-5606ff80a5ca.png)˜
+
 
 #### *No Global Install* Required
 
@@ -114,7 +146,7 @@ when they try to contribute to your project.
 *Please* do not use this in Production.
 (The Socket.io server on port 4242)
 
-To *prevent* ***accidental*** running of this script in Prod,
+To *prevent* ***accidental*** running of this script in Prod,˜
 the client script only works when the `url` *matches* ***localhost*** or ***127.0.0.1***.
 
 #### *NOT* "*General Purpose*" (Yet!)
@@ -144,7 +176,6 @@ npm install && npm test
 + **node-livereload**:
 https://github.com/napcs/node-livereload
 (we had a look at, but did not fit our needs ... uses *polling*)
-+ **Meteor** has live reloading https://github.com/meteor/meteor
 + **Watch**: https://www.npmjs.com/package/watch  
 (has lots of good ideas and code from *many* great contributors ...
   does *half* the job we want, but does not refresh connected devices/browsers)
@@ -153,7 +184,8 @@ https://github.com/napcs/node-livereload
 
 ### Inspiration
 
-+ Flat: https://github.com/hughsk/flat
++ In past we've used **Meteor** which has live reloading https://github.com/meteor/meteor
+(sadly, its a "Black Box" part of their "Secret Sauce" so we had to write our own...)
 
 ### Background Reading
 
