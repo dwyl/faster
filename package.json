@@ -1,6 +1,6 @@
 {
   "name": "faster",
-  "version": "3.3.0",
+  "version": "3.3.3",
   "description": "faster way to reload your web project on all connected devices",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "faster": "DEV=1 bin/faster.js",
     "nocov": "./node_modules/tape/bin/tape ./test/*.js",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/*.js && ./node_modules/.bin/istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "coverage": "./node_modules/.bin/istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
     "jshint": "./node_modules/jshint/bin/jshint -c .jshintrc --exclude-path .gitignore .",
     "codeclimate": "CODECLIMATE_REPO_TOKEN=9825169f8f3a0bdf7351a71da9474c212e819bf0ea6fed60b57be83ff53e9459 ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
     "spec": "node ./node_modules/tape/bin/tape ./test/*.js | node_modules/tap-spec/bin/cmd.js"
@@ -51,6 +51,7 @@
   },
   "pre-commit": [
     "jshint",
+    "test",
     "coverage",
     "codeclimate"
   ],

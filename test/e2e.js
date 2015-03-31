@@ -23,6 +23,7 @@ test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), functi
         console.log(chalk.bgYellow.red.bold(" Socket.io Client Started "))
         socket.on('refresh', function(data) {
           console.log(chalk.bgYellow.red(data));
+          t.equal(data, 'refresh', "✓ Refresh Signal Works (as expected)")
         });
       }, 500);
 
@@ -32,6 +33,7 @@ test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), functi
         if(err) {
           console.log(err);
         }
+        t.end();
         // soceket should receive a message here...
       });
       // update npm-debug.log
@@ -40,7 +42,6 @@ test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), functi
         if(err) {
           console.log(err);
         }
-        t.end();
       });
     })
   },2000)
