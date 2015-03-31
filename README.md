@@ -129,7 +129,7 @@ You will need to use the **LAN IP Address** to access the app from the devices.
 Again, helpfully, ***Faster*** tells what the **LAN IP Address is
 when you boot your app using the `npm run faster` command:
 
-![faster-boot-console-explain-basedir](https://cloud.githubusercontent.com/assets/194400/6909776/a6d8573e-d741-11e4-8582-5606ff80a5ca.png)
+![faster-boot-console-explain-basedir](https://cloud.githubusercontent.com/assets/194400/6909776/a6d8573e-d741-11e4-8582-5606ff80a5ca.png)˜
 
 
 #### *No Global Install* Required
@@ -146,7 +146,7 @@ when they try to contribute to your project.
 *Please* do not use this in Production.
 (The Socket.io server on port 4242)
 
-To *prevent* ***accidental*** running of this script in Prod,
+To *prevent* ***accidental*** running of this script in Prod,˜
 the client script only works when the `url` *matches* ***localhost*** or ***127.0.0.1***.
 
 #### *NOT* "*General Purpose*" (Yet!)
