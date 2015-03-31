@@ -129,7 +129,7 @@ You will need to use the **LAN IP Address** to access the app from the devices.
 Again, helpfully, ***Faster*** tells what the **LAN IP Address is
 when you boot your app using the `npm run faster` command:
 
-![faster-note-to-self-final](https://cloud.githubusercontent.com/assets/194400/6908766/c6ac4746-d737-11e4-924d-5e95e72602cb.png)
+![faster-boot-console-explain-basedir](https://cloud.githubusercontent.com/assets/194400/6909776/a6d8573e-d741-11e4-8582-5606ff80a5ca.png)
 
 
 #### *No Global Install* Required
