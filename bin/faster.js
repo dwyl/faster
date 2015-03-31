@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 'use strict';
-// when developing use /../ othewise we need to go up /node_modules/faster/bin/
-var basedir = process.env.BASE || '/../../../';
-require('../lib/')('/../');
+// when developing use /../ othewise we need to go up /yourapp from /node_modules/faster/bin/
+var basedir;
+if(parseInt(process.env.DEV,10) === 1) {
+  basedir = '/../';
+} else {
+  basedir = '/../../../';
+}
+require('../lib/')(basedir);
