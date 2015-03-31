@@ -12,40 +12,45 @@ var ioclient = require('socket.io-client');
 var socket;
 
 var faster = require('../lib/');
+var basedir = '/../';
+
+// test(cyan('Init Faster Without Callback'), function(t){
+//
+// });
 
 test(cyan('Run Faster. Update a File. Listen for Re-Start Event. Close'), function(t){
-  //     basedir
-  faster('/../', function(child){
-    t.true(parseInt(child.pid, 10) > 0, green("✓ Child Process Running ") + cyan(child.pid))
-    setTimeout(function(){
-      socket = require('socket.io-client')('http://localhost:'+port);
-      console.log(chalk.bgYellow.red.bold(" Socket.io Client Started "))
-      socket.on('refresh', function(data) {
-        console.log(chalk.bgYellow.red(data));
+  setTimeout(function(){
+    faster(basedir, function(child){
+      t.true(parseInt(child.pid, 10) > 0, green("✓ Child Process Running ") + cyan(child.pid))
+      setTimeout(function(){
+        socket = require('socket.io-client')('http://localhost:'+port);
+        console.log(chalk.bgYellow.red.bold(" Socket.io Client Started "))
+        socket.on('refresh', function(data) {
+          console.log(chalk.bgYellow.red(data));
+        });
+      }, 500);
+
+      var filename = __dirname + "/hai.txt";
+      var time = new Date().getTime();
+      fs.writeFile(filename, time, function(err){
+        if(err) {
+          console.log(err);
+        }
+        // socekt should receive a message here...
+        // t.end();
       });
-    }, 500);
+      // update npm-debug.log
+      filename = __dirname + "/setup/npm-debug.log";
+      fs.writeFile(filename, time, function(err){
+        if(err) {
+          console.log(err);
+        }
 
-    var filename = __dirname + "/hai.txt";
-    var time = new Date().getTime();
-    fs.writeFile(filename, time, function(err){
-      if(err) {
-        console.log(err);
-      }
-      // socekt should receive a message here...
-      // t.end();
-    });
-    // update npm-debug.log
-    filename = __dirname + "/setup/npm-debug.log";
-    fs.writeFile(filename, time, function(err){
-      if(err) {
-        console.log(err);
-      }
-
-      // socekt should receive a message here...
-      t.end();
-    });
-  })
-
+        // socekt should receive a message here...
+        t.end();
+      });
+    })
+  },2000)
 });
 
 var Wreck = require('wreck');
@@ -74,7 +79,7 @@ test(cyan('Access Faster Server style.css and client.js'), function(t){
 });
 
 test(cyan('Shut Down Faster'), function(t){
-  setTimeout(function(){
+  setTimeout(function() {
     socket.disconnect();
     faster.terminate(function(err, done){
       t.true(done, green("✓ Cleanup Complete"))

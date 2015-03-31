@@ -7,4 +7,5 @@ if(parseInt(process.env.DEV,10) === 1) {
 } else {
   basedir = '/../../../';
 }
+console.log("faster basedir: "+basedir);
 require('../lib/')(basedir);
