@@ -12,7 +12,7 @@ var index = function(res){
   });
 }
 
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 4000;
 require('http').createServer(function (req, res) {
   if(req.url.search('.') > -1) {
     var f    = req.url.split('/');
