@@ -8,7 +8,6 @@ var terminate = require('terminate'); // knew this would come in handy! ;-)
 var fs = require('fs');
 // start SocketIO CLIENT so we can listen for the restart event
 var ioclient = require('socket.io-client');
-// var sio;
 var socket;
 
 var faster = require('../lib/');
@@ -51,7 +50,7 @@ var Wreck = require('wreck');
 
 test(cyan('Access Faster Server style.css and client.js'), function(t){
   Wreck.get('http://localhost:'+port+'/', function (err, res, payload) {
-    t.equal(payload, '404', "✓ 404");
+    t.equal(payload, '200', "✓ 200");
   });
   Wreck.get('http://localhost:'+port+'/style.css', function (err, res, payload) {
     t.true(payload.indexOf('#fstr_refresh__') > -1, "✓ style.css loaded");
@@ -64,7 +63,7 @@ test(cyan('Access Faster Server style.css and client.js'), function(t){
   });
   Wreck.get('http://localhost:'+port+'/fail.html', function (err, res, payload) {
     // console.log(payload);
-    t.equal(payload, '404', "✓ fail should 404");
+    t.equal(payload, '200', "✓ always 200");
     // t.end()
   });
   var ip = faster.ip;
