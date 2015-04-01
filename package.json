@@ -1,6 +1,6 @@
 {
   "name": "faster",
-  "version": "3.4.3",
+  "version": "3.4.5",
   "description": "faster way to reload your web project on all connected devices",
   "main": "index.js",
   "scripts": {

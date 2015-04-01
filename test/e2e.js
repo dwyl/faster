@@ -52,9 +52,6 @@ test(cyan('Access Faster Server style.css and client.js'), function(t){
   Wreck.get('http://localhost:'+port+'/', function (err, res, payload) {
     t.equal(payload, '200', "✓ 200");
   });
-  Wreck.get('http://localhost:'+port+'/style.css', function (err, res, payload) {
-    t.true(payload.indexOf('#fstr_refresh__') > -1, "✓ style.css loaded");
-  });
   Wreck.get('http://localhost:'+port+'/client.js', function (err, res, payload) {
     t.true(payload.indexOf('function') > -1, "✓ client.js loaded");
   });
