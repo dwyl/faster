@@ -8,7 +8,6 @@ var terminate = require('terminate'); // knew this would come in handy! ;-)
 var fs = require('fs');
 // start SocketIO CLIENT so we can listen for the restart event
 var ioclient = require('socket.io-client');
-// var sio;
 var socket;
 
 var faster = require('../lib/');
