@@ -69,6 +69,9 @@ test(cyan('Access Faster Server style.css and client.js'), function(t){
 });
 
 test(cyan('Shut Down Faster'), function(t){
+  // delete the file we created
+  var filename = __dirname + "/hai.txt"; // avoids adding it to github...
+  fs.unlinkSync(filename);
   setTimeout(function() {
     socket.disconnect();
     faster.terminate(function(err, done){
