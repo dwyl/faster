@@ -6,15 +6,15 @@ in ***all connected browsers*** each time ***any file*** in your project is ***u
 
 ![rocket turtle](http://i.imgur.com/bT7uPHE.png)
 
-[![Build Status](https://travis-ci.org/ideaq/faster.svg)](https://travis-ci.org/ideaq/faster)
-[![Code Climate](https://codeclimate.com/github/ideaq/faster/badges/gpa.svg)](https://codeclimate.com/github/ideaq/faster)
-[![Test Coverage](https://codeclimate.com/github/ideaq/faster/badges/coverage.svg)](https://codeclimate.com/github/ideaq/faster)
+[![Build Status](https://travis-ci.org/dwyl/faster.svg)](https://travis-ci.org/dwyl/faster)
+[![Code Climate](https://codeclimate.com/github/dwyl/faster/badges/gpa.svg)](https://codeclimate.com/github/dwyl/faster)
+[![Test Coverage](https://codeclimate.com/github/dwyl/faster/badges/coverage.svg)](https://codeclimate.com/github/dwyl/faster)
 [![npm version](https://badge.fury.io/js/faster.svg)](http://badge.fury.io/js/faster)
 [![Node.js Version](https://img.shields.io/node/v/terminate.svg?style=flat)](http://nodejs.org/download)
-[![Dependency Status](https://david-dm.org/ideaq/faster.svg)](https://david-dm.org/ideaq/faster)
+[![Dependency Status](https://david-dm.org/dwyl/faster.svg)](https://david-dm.org/dwyl/faster)
 
 
-## Why?
+## *Why*?
 
 We need a *simpler* way of reloading the "page" when
 files (views/styles/etc) change in our project.  
@@ -24,8 +24,7 @@ So, instead of trying to force an *existing* ***general purpose*** tool
 to do the thing that we wanted,  
 we decided to write our own ***specific*** script.
 
-## What?
-
+## *What*?
 
 The ***simplest*** way to ensure the page(s) on *all* connected devices (*live*) ***re-load***  
 when ever ***any file*** *or* ***directory*** is ***updated*** (created, changed or deleted) in the project.
@@ -45,7 +44,8 @@ their content.
 (useful when your project has dependencies you don't expect to change *while* you are running your dev server)
 
 
-## Usage
+## *How*? [![Join the chat at https://gitter.im/dwyl/chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dwyl/chat/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 Using this module in ***4 easy steps***
 
@@ -69,7 +69,7 @@ Add the following line to the `scripts` section of your `package.json`.
 *and* add this script to the main/layout template in your project:
 
 ```html
-<script src='https://rawgit.com/ideaq/faster/master/lib/client.js'></script>
+<script src='https://rawgit.com/dwyl/faster/master/lib/client.js'></script>
 ```
 
 ***Note***: *if* you ***prefer*** to ***run Faster*** 100% ***locally*** you will
@@ -158,7 +158,7 @@ Right now, this script is *very* specific
 > We have *not* tried this on Windows.
 > If anyone wants to try, please
 ```sh
-git clone https://github.com/ideaq/faster.git && cd faster
+git clone https://github.com/dwyl/faster.git && cd faster
 npm install && npm test
 ```
 > and let us know what you see...!
@@ -194,7 +194,7 @@ https://github.com/napcs/node-livereload
 
 ## tl;dr
 
-We tried using [**nodemon**](https://github.com/ideaq/faster/issues/1)
+We tried using [**nodemon**](https://github.com/dwyl/faster/issues/1)
 but found it lacking in two key areas:
 
 **a**. New files/folders added to the project were not watched.  
