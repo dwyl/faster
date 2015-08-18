@@ -10,7 +10,7 @@
     "test": "istanbul cover tape ./test/*.js",
     "coverage": "istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
     "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
-    "codeclimate": "CODECLIMATE_REPO_TOKEN=9825169f8f3a0bdf7351a71da9474c212e819bf0ea6fed60b57be83ff53e9459 ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=ae932206d65429be80bf5d2ba3f19c02c02908e0ffd7ef89a360a4b49b6c562c ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
     "spec": "node tape ./test/*.js | node_modules/tap-spec/bin/cmd.js"
   },
   "bin": {
