@@ -75,7 +75,7 @@ test(cyan('Shut Down Faster'), function(t){
   setTimeout(function() {
     socket.disconnect();
     faster.terminate(function(err, done) {
-      // console.log(err, done)
+      console.log('err:', err, 'done:', done)
       t.ok(!err, green("✓ Cleanup Complete"))
       t.end();
     });
