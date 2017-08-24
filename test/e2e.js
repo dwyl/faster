@@ -50,7 +50,7 @@ var Wreck = require('wreck');
 
 test(cyan('Access Faster Server style.css and client.js'), function(t){
   Wreck.get('http://localhost:'+port+'/', function (err, res, payload) {
-    t.equal(payload, '200', "✓ 200");
+    t.equal(res.statusCode, 200, "✓ 200");
   });
   Wreck.get('http://localhost:'+port+'/client.js', function (err, res, payload) {
     t.true(payload.indexOf('function') > -1, "✓ client.js loaded");
@@ -60,7 +60,7 @@ test(cyan('Access Faster Server style.css and client.js'), function(t){
   });
   Wreck.get('http://localhost:'+port+'/fail.html', function (err, res, payload) {
     // console.log(payload);
-    t.equal(payload, '200', "✓ always 200");
+    t.equal(res.statusCode, 200, "✓ always 200");
     // t.end()
   });
   var ip = faster.ip;
@@ -74,8 +74,9 @@ test(cyan('Shut Down Faster'), function(t){
   fs.unlinkSync(filename);
   setTimeout(function() {
     socket.disconnect();
-    faster.terminate(function(err, done){
-      t.true(done, green("✓ Cleanup Complete"))
+    faster.terminate(function(err, running) {
+      console.log('err:', err, 'done:', running)
+      t.ok(!running, green("✓ Cleanup Complete"))
       t.end();
     });
   },2000);

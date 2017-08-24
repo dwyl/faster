@@ -1,6 +1,6 @@
 {
   "name": "faster",
-  "version": "3.4.6",
+  "version": "3.5.0",
   "description": "Faster way to reload your web project on all connected devices",
   "main": "index.js",
   "scripts": {
@@ -37,22 +37,22 @@
   },
   "homepage": "https://github.com/ideaq/faster",
   "dependencies": {
-    "chalk": "^1.0.0",
+    "chalk": "^2.1.0",
     "listdirs": "^3.0.0",
-    "socket.io": "^1.3.5",
-    "socket.io-client": "^1.3.5",
-    "terminate": "^1.0.5",
-    "useragent": "^2.1.5"
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "terminate": "^2.1.0",
+    "useragent": "^2.2.1"
   },
   "devDependencies": {
-    "codeclimate-test-reporter": "0.0.4",
-    "istanbul": "^0.3.13",
-    "jshint": "^2.7.0",
-    "pre-commit": "1.0.6",
+    "codeclimate-test-reporter": "0.5.0",
+    "istanbul": "^0.4.5",
+    "jshint": "^2.9.5",
+    "pre-commit": "1.2.2",
     "ps-tree": "1.0.0",
-    "tap-spec": "^3.0.0",
-    "tape": "^4.0.0",
-    "wreck": "^5.4.0"
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0",
+    "wreck": "^12.2.3"
   },
   "pre-commit": [
     "jshint",
@@ -61,6 +61,6 @@
     "codeclimate"
   ],
   "engines": {
-    "node": ">=0.10"
+    "node": ">=6"
   }
 }
