@@ -7,8 +7,7 @@ in ***all connected browsers*** each time ***any file*** in your project is ***u
 ![rocket turtle](http://i.imgur.com/bT7uPHE.png)
 
 [![Build Status](https://travis-ci.org/dwyl/faster.svg)](https://travis-ci.org/dwyl/faster)
-[![Code Climate](https://codeclimate.com/github/dwyl/faster/badges/gpa.svg)](https://codeclimate.com/github/dwyl/faster)
-[![Test Coverage](https://codeclimate.com/github/dwyl/faster/badges/coverage.svg)](https://codeclimate.com/github/dwyl/faster)
+[![codecov](https://codecov.io/gh/dwyl/faster/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/faster)
 [![npm version](https://badge.fury.io/js/faster.svg)](http://badge.fury.io/js/faster)
 [![Node.js Version](https://img.shields.io/node/v/terminate.svg?style=flat)](http://nodejs.org/download)
 [![Dependency Status](https://david-dm.org/dwyl/faster.svg)](https://david-dm.org/dwyl/faster)
