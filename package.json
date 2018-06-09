@@ -4,13 +4,12 @@
   "description": "Faster way to reload your web project on all connected devices",
   "main": "index.js",
   "scripts": {
-    "start": "node ./example/server.js",
+    "start": "node ./example/server.js && npm run faster",
     "faster": "DEV=1 bin/faster.js",
     "nocov": "tape ./test/*.js",
     "test": "istanbul cover tape ./test/*.js",
     "coverage": "istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
     "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
-    "codeclimate": "CODECLIMATE_REPO_TOKEN=ae932206d65429be80bf5d2ba3f19c02c02908e0ffd7ef89a360a4b49b6c562c ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
     "spec": "node tape ./test/*.js | node_modules/tap-spec/bin/cmd.js"
   },
   "bin": {
@@ -38,14 +37,13 @@
   "homepage": "https://github.com/dwyl/faster",
   "dependencies": {
     "chalk": "^2.1.0",
-    "listdirs": "^3.0.0",
+    "listdirs": "^3.1.1",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3",
     "terminate": "^2.1.0",
     "useragent": "^2.2.1"
   },
   "devDependencies": {
-    "codeclimate-test-reporter": "0.5.0",
     "istanbul": "^0.4.5",
     "jshint": "^2.9.5",
     "pre-commit": "1.2.2",
@@ -57,8 +55,7 @@
   "pre-commit": [
     "jshint",
     "test",
-    "coverage",
-    "codeclimate"
+    "coverage"
   ],
   "engines": {
     "node": ">=6"
