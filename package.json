@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ideaq/faster.git"
+    "url": "https://github.com/dwyl/faster.git"
   },
   "keywords": [
     "faster",
@@ -33,9 +33,9 @@
   "author": "@nelsonic <contact.nelsonic@gmail.com> (https://github.com/nelsonic)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ideaq/faster/issues"
+    "url": "https://github.com/dwyl/faster/issues"
   },
-  "homepage": "https://github.com/ideaq/faster",
+  "homepage": "https://github.com/dwyl/faster",
   "dependencies": {
     "chalk": "^2.1.0",
     "listdirs": "^3.0.0",
