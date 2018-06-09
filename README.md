@@ -30,7 +30,7 @@ when ever ***any file*** *or* ***directory*** is ***updated*** (created, changed
 
 ![faster diagram](http://i.imgur.com/xXEbnvm.png)
 
-### Key Benefits
+### Key Benefits
 
 + ***Watches all directories*** *and* ***sub-directories*** (*recursively*) for ***any change***
 + Responds to *any change* in the files (create, update, delete, re-name.)
